@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Study Timer</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="./img/logo.png"
+            alt="logo"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          Study Timer
+        </a>
+      </div>
+    </nav>
+    <div class="timer">
+      <div class="hours">
+        <p class="hours-text number">0</p>
+        <p class="hours-text">Hours</p>
+      </div>
+      <div class="minutes">
+        <p class="minutes-text number">0</p>
+        <p class="minutes-text">Minutes</p>
+      </div>
+      <div class="seconds">
+        <p class="seconds-text number">0</p>
+        <p class="seconds-text">Seconds</p>
+      </div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-primary start-btn">Start</button>
+      <button class="btn btn-primary stop-btn">Stop</button>
+      <button class="btn btn-primary reset-btn">Reset</button>
+    </div>
+    <form class="timer-form">
+      <input
+        type="number"
+        name="hours-input"
+        id="hours-input"
+        placeholder="H"
+      />
+      <input
+        type="number"
+        name="minutes-input"
+        id="minutes-input"
+        placeholder="M"
+      />
+      <input
+        type="number"
+        name="seconds-input"
+        id="seconds-input"
+        placeholder="S"
+      />
+      <button class="btn btn-primary set-btn">Set</button>
+    </form>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
