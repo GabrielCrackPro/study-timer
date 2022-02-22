@@ -16,7 +16,29 @@ const setTimer = (hoursValue, minutesValue, secondsValue) => {
   sec < 10 ? (sec = "0" + sec) : (sec = sec);
   elemets.timer.innerHTML = `${hours}:${min}:${sec}`;
 };
-elemets.start.addEventListener("click", () => {}); // TODO: start timer
+elemets.start.addEventListener("click", () => {
+  let interval = setInterval(() => {
+    let hours = parseInt(elemets.timer.innerHTML.split(":")[0]);
+    let min = parseInt(elemets.timer.innerHTML.split(":")[1]);
+    let sec = parseInt(elemets.timer.innerHTML.split(":")[2]);
+    console.log(hours, min, sec);
+    sec--;
+    if (sec < 0) {
+      sec = 59;
+      min--;
+    }
+    if (min < 0) {
+      min = 59;
+      hours--;
+    }
+    if (hours < 0) {
+      hours = 0;
+      min = 0;
+      sec = 0;
+    }
+    setTimer(hours, min, sec);
+  }, 1000);
+}); // TODO: start timer
 
 elemets.form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -27,7 +49,6 @@ elemets.form.addEventListener("submit", (e) => {
   console.log(min);
   const sec = formData.get("seconds-input");
   console.log(sec);
-  const time = hours * 3600 + min * 60 + sec;
-  console.log(time);
   setTimer(hours, min, sec);
+  elemets.form.reset();
 });

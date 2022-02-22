@@ -5,7 +5,8 @@
 }
 .timer,
 .timer-controls,
-.timer-form {
+.timer-form,
+.default-timers {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,4 +25,7 @@
   width: 50px;
   text-align: center;
   margin: 10px;
+}
+.default-timers button {
+  padding: 10px;
 }
