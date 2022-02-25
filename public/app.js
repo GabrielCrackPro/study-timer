@@ -5,19 +5,19 @@ const elements = {
   stop: document.querySelector(".stop-btn"),
   reset: document.querySelector(".reset-btn"),
   set: document.querySelector(".set-btn"),
+  add: document.querySelector(".save-btn"),
   defaultTimers: document.querySelectorAll(".default-timers"),
 };
 
+let savedTimers = [];
 const setTimer = (hoursValue, minutesValue, secondsValue) => {
   let hours = hoursValue;
   let min = minutesValue;
   let sec = secondsValue;
-  hours < 10 ? (hours = "0" + hours) : (hours = hours);
-  min < 10 ? (min = "0" + min) : (min = min);
-  sec < 10 ? (sec = "0" + sec) : (sec = sec);
   let timer = `${hours}:${min}:${sec}`;
   elements.timer.innerHTML = timer;
-  saveTimer(timer);
+  savedTimers.push(timer);
+  saveTimer(savedTimers);
 };
 let interval;
 elements.start.addEventListener("click", () => {
@@ -48,8 +48,13 @@ elements.reset.addEventListener("click", () => {
   setTimer(0, 0, 0);
 });
 elements.stop.addEventListener("click", () => {
-  // stop the timer
   clearInterval(interval);
+});
+elements.add.addEventListener("click", () => {
+  const button = document.createElement("button");
+  button.innerText = elements.timer.textContent;
+  button.classList.add("btn", "btn-dark");
+  elements.defaultTimers[0].appendChild(button);
 });
 
 elements.form.addEventListener("submit", (e) => {
@@ -58,7 +63,13 @@ elements.form.addEventListener("submit", (e) => {
   const hours = formData.get("hours-input");
   const min = formData.get("minutes-input");
   const sec = formData.get("seconds-input");
-  setTimer(hours, min, sec);
+  if (hours === "" && min === "" && sec === "") {
+    hours = 0;
+    min = 0;
+    sec = 0;
+  } else {
+    setTimer(hours, min, sec);
+  }
   elements.form.reset();
 });
 elements.defaultTimers.forEach((timer) => {
@@ -68,6 +79,17 @@ elements.defaultTimers.forEach((timer) => {
   });
 });
 
-const saveTimer = (timer) => {
-  localStorage.setItem("timer", timer);
+const saveTimer = (savedTimersArray) => {
+  localStorage.setItem("timers", [savedTimersArray]);
+};
+window.onload = () => {
+  if (localStorage.getItem("timers")) {
+    savedTimers = JSON.parse(localStorage.getItem("timers"));
+    savedTimers.forEach((timer) => {
+      const button = document.createElement("button");
+      button.innerText = timer;
+      button.classList.add("btn", "btn-dark");
+      elements.defaultTimers[0].appendChild(button);
+    });
+  }
 };
